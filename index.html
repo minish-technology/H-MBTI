@@ -295,7 +295,7 @@
             finalType += type[3] === "G" ? "RCOG" : "RCOL"; // O-G 또는 O-L
         }
 
-        showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${type}</h1> <br> ${hmtiTypes[type]}`, true);
+        showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${finalType}</h1> <br> ${hmtiTypes[finalType]}`, true);
     }
 
         function showModal(text, showShareButton) {
