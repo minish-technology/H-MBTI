@@ -27,27 +27,21 @@
         h1 {
             text-align: center;
             color: #007BFF;
-            margin-bottom: 20px;
         }
 
         .question {
             background-color: #fff;
             border: 1px solid #ddd;
             padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
+            margin-bottom: 40px;
+            border-radius: 5px;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .question:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .slider-container {
             position: relative;
-            margin: 20px 0;
+            margin: 40px 0;
         }
 
         .slider-labels,
@@ -93,7 +87,6 @@
             background: #007BFF;
             cursor: pointer;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         input[type="range"]::-moz-range-thumb {
@@ -102,7 +95,6 @@
             background: #007BFF;
             cursor: pointer;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         button {
@@ -198,13 +190,24 @@
             height: 50px;
         }
     </style>
+    <meta name="google-site-verification" content="qoRotECDD2K9SUC4vqKobi8WJlKmhkV1WsNmd0OEYms" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9360638495551473"
+    crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>헬스케어 MBTI 테스트</h1>
     <form id="hmti-test-form">
         <!-- 질문들이 여기에 동적으로 생성됩니다. -->
     </form>
-    <button id="submit-button" style="display: none;" onclick="calculateHMType()">제출</button> <!-- 제출 버튼 -->
+    <button onclick="calculateHMType()">제출</button>
+    <!-- 커스텀 모달 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span id="close">×</span>
+            <p id="modal-text"></p>
+            <button id="share-button" style="display: none;" onclick="copyToClipboard()">공유하기</button>
+        </div>
+    </div>
     <div id="pagination" style="text-align: center; margin: 20px 0;">
         <button id="prev-button" onclick="changePage(-1)">이전</button>
         <span id="page-info">1 / ${Math.ceil(questions.length / questionsPerPage)}</span>
@@ -212,37 +215,39 @@
     </div>
     <script>
         const questions = [
-            "신체적 건강뿐만 아니라 정신적, 사회적 건강도 동등하게 중요하다고 생각한다.",
-            "운동은 혼자 하는 것보다 그룹으로 하는 것이 더 효과적이라고 생각한다.",
-            "건강에 관한 결정을 내릴 때 충분히 고민하고 신중하게 접근한다.",
-            "나의 건강 관리 방식은 상황에 따라 유연하게 변하는 편이다.",
-            "특정 건강 목표(예: 체중 감량, 근력 증가)에 집중하는 것이 전반적인 웰빙보다 중요하다.",
-            "건강 관련 정보는 주로 혼자 찾아보고 결정을 내린다.",
-            "새로운 건강 트렌드나 다이어트를 먼저 시도해보는 편이다.",
-            "매일 같은 시간에 운동하는 등 규칙적인 생활을 중요하게 여긴다.",
-            "명상이나 요가와 같은 심신 안정 활동을 정기적으로 한다.",
-            "건강 관련 커뮤니티나 모임에 적극적으로 참여한다.",
-            "건강 관련 결정을 내리기 전에 장단점을 철저히 분석한다.",
-            "같은 운동이나 식단을 계속하는 것에 쉽게 지루함을 느낀다.",
-            "전반적인 라이프스타일 개선보다는 구체적인 건강 지표(예: 혈압, 콜레스테롤 수치)에 더 관심이 있다.",
-            "건강 관리는 개인의 책임이라고 생각하며, 다른 사람의 조언에 의존하지 않는다.",
-            "건강에 좋다고 알려진 새로운 음식이나 보조제를 주저 없이 시도한다.",
-            "정기적인 건강 검진을 중요하게 생각하고 꼭 받는다.",
-            "육체적 건강과 정신적 건강은 밀접하게 연관되어 있다고 생각한다.",
-            "다른 사람들과 건강 정보나 팁을 공유하는 것을 즐긴다.",
-            "건강 관련 의사결정을 할 때 전문가의 조언을 꼭 듣는 편이다.",
-            "다양한 운동을 번갈아가며 하는 것을 좋아한다.",
-            "전체적인 웰빙보다는 특정 부위의 체형 관리에 더 집중한다.",
-            "나만의 건강 관리 방식을 가지고 있으며, 이를 고수하는 편이다.",
-            "건강에 관한 새로운 기기나 앱이 나오면 빠르게 도입하는 편이다.",
-            "식사 시간이나 취침 시간 등 생활 리듬을 일정하게 유지하려고 노력한다.",
-            "스트레스 관리가 신체 건강만큼 중요하다고 생각한다.",
-            "건강한 생활습관을 위해 가족이나 친구들과 함께 노력한다.",
-            "건강 관련 결정을 내릴 때 직관보다는 객관적인 데이터를 중요하게 여긴다.",
+            '나는 새로운 건강 정보를 접하면 즉시 실천해 보는 편이다.',
+            '건강 관리 루틴을 정해두고 꾸준히 지키는 것이 중요하다고 생각한다.',
+            '신체적 건강뿐만 아니라 정신적, 사회적 건강도 동등하게 중요하다고 생각한다.',
+            '운동은 혼자 하는 것보다 그룹으로 하는 것이 더 효과적이라고 생각한다.',
+            '건강에 관한 결정을 내릴 때 충분히 고민하고 신중하게 접근한다.',
+            '나의 건강 관리 방식은 상황에 따라 유연하게 변하는 편이다.',
+            '특정 건강 목표(예: 체중 감량, 근력 증가)에 집중하는 것이 전반적인 웰빙보다 중요하다.',
+            '건강 관련 정보는 주로 혼자 찾아보고 결정을 내린다.',
+            '새로운 건강 트렌드나 다이어트를 먼저 시도해보는 편이다.',
+            '매일 같은 시간에 운동하는 등 규칙적인 생활을 중요하게 여긴다.',
+            '명상이나 요가와 같은 심신 안정 활동을 정기적으로 한다.',
+            '건강 관련 커뮤니티나 모임에 적극적으로 참여한다.',
+            '건강 관련 결정을 내리기 전에 장단점을 철저히 분석한다.',
+            '같은 운동이나 식단을 계속하는 것에 쉽게 지루함을 느낀다.',
+            '전반적인 라이프스타일 개선보다는 구체적인 건강 지표(예: 혈압, 콜레스테롤 수치)에 더 관심이 있다.',
+            '건강 관리는 개인의 책임이라고 생각하며, 다른 사람의 조언에 의존하지 않는다.',
+            '건강에 좋다고 알려진 새로운 음식이나 보조제를 주저 없이 시도한다.',
+            '정기적인 건강 검진을 중요하게 생각하고 꼭 받는다.',
+            '육체적 건강과 정신적 건강은 밀접하게 연관되어 있다고 생각한다.',
+            '다른 사람들과 건강 정보나 팁을 공유하는 것을 즐긴다.',
+            '건강 관련 의사결정을 할 때 전문가의 조언을 꼭 듣는 편이다.',
+            '다양한 운동을 번갈아가며 하는 것을 좋아한다.',
+            '전체적인 웰빙보다는 특정 부위의 체형 관리에 더 집중한다.',
+            '나만의 건강 관리 방식을 가지고 있으며, 이를 고수하는 편이다.',
+            '건강에 관한 새로운 기기나 앱이 나오면 빠르게 도입하는 편이다.',
+            '식사 시간이나 취침 시간 등 생활 리듬을 일정하게 유지하려고 노력한다.',
+            '스트레스 관리가 신체 건강만큼 중요하다고 생각한다.',
+            '건강한 생활습관을 위해 가족이나 친구들과 함께 노력한다.',
+            '건강 관련 결정을 내릴 때 직관보다는 객관적인 데이터를 중요하게 여긴다.',
         ];
         const form = document.getElementById('hmti-test-form');
         let currentPage = 1;
-        const questionsPerPage = 10; // 페이지당 질문 수
+        const questionsPerPage = 5;
 
         function displayQuestions() {
             form.innerHTML = ''; // 질문 초기화
@@ -277,9 +282,6 @@
             document.getElementById('page-info').innerText = `${currentPage} / ${Math.ceil(questions.length / questionsPerPage)}`;
             document.getElementById('prev-button').disabled = currentPage === 1;
             document.getElementById('next-button').disabled = currentPage === Math.ceil(questions.length / questionsPerPage);
-            
-            // 제출 버튼 표시 조건
-            document.getElementById('submit-button').style.display = currentPage === Math.ceil(questions.length / questionsPerPage) ? 'block' : 'none';
         }
 
         function updateCircles(questionIndex) {
@@ -309,34 +311,78 @@
             type += answers[3] > answers[7] ? "G" : "L";
 
             // 각 유형에 따라 페이지 이동
-            const typeMapping = {
-                "ACHG": "achg.html",
-                "ACHL": "achl.html",
-                "ACOG": "acog.html",
-                "ACOL": "acol.html",
-                "ADHG": "adhg.html",
-                "ADHL": "adhl.html",
-                "ADOG": "adog.html",
-                "ADOL": "adol.html",
-                "RCHG": "rchg.html",
-                "RCHL": "rchl.html",
-                "RCOG": "rcog.html",
-                "RCOL": "rcol.html",
-                "RDHG": "rdhg.html",
-                "RDHL": "rdhl.html",
-                "RDOG": "rdog.html",
-                "RDOL": "rdol.html"
-            };
-
-            if (typeMapping[type]) {
-                window.location.href = typeMapping[type];
+            if (type === "ACHG") {
+                window.location.href = "achg.html"; // 적극적이고 일관된 루틴으로 전체적 건강을 그룹과 함께 추구 (MBTI: ESTJ와 유사)
+            } else if (type === "ACHL") {
+                window.location.href = "achl.html"; // 혼자서 일관된 방식으로 전체적 건강을 적극적으로 관리 (MBTI: ISTJ와 유사)
+            } else if (type === "ACOG") {
+                window.location.href = "acog.html"; // 그룹과 함께 특정 건강 목표를 일관되고 적극적으로 추구 (MBTI: ESFJ와 유사)
+            } else if (type === "ACOL") {
+                window.location.href = "acol.html"; // 혼자서 특정 건강 목표를 일관되고 적극적으로 관리 (MBTI: ISFJ와 유사)
+            } else if (type === "ADHG") {
+                window.location.href = "adhg.html"; // 그룹과 함께 다양한 방식으로 전체적 건강을 적극적으로 추구 (MBTI: ENFJ와 유사)
+            } else if (type === "ADHL") {
+                window.location.href = "adhl.html"; // 혼자서 다양한 방식으로 전체적 건강을 적극적으로 관리 (MBTI: INFJ와 유사)
+            } else if (type === "ADOG") {
+                window.location.href = "adog.html"; // 그룹과 함께 특정 건강 목표를 다양한 방식으로 적극적으로 추구 (MBTI: ENTP와 유사)
+            } else if (type === "ADOL") {
+                window.location.href = "adol.html"; // 혼자서 특정 건강 목표를 다양한 방식으로 적극적으로 관리 (MBTI: INTP와 유사)
+            } else if (type === "RCHG") {
+                window.location.href = "rchg.html"; // 그룹 내에서 일관된 루틴으로 전체적 건강을 숙고적으로 관리 (MBTI: ESFP와 유사)
+            } else if (type === "RCHL") {
+                window.location.href = "rchl.html"; // 혼자서 일관된 루틴으로 전체적 건강을 숙고적으로 추구 (MBTI: ISFP와 유사)
+            } else if (type === "RCOG") {
+                window.location.href = "rcog.html"; // 그룹과 함께 특정 건강 목표를 일관되게 숙고하며 관리 (MBTI: ESTP와 유사)
+            } else if (type === "RCOL") {
+                window.location.href = "rcol.html"; // 혼자서 특정 건강 목표를 일관되게 숙고하며 관리 (MBTI: ISTP와 유사)
+            } else if (type === "RDHG") {
+                window.location.href = "rdhg.html"; // 그룹 내에서 다양한 방식으로 전체적 건강을 숙고적으로 추구 (MBTI: ENFP와 유사)
+            } else if (type === "RDHL") {
+                window.location.href = "rdhl.html"; // 혼자서 다양한 방식으로 전체적 건강을 숙고적으로 관리 (MBTI: INFP와 유사)
+            } else if (type === "RDOG") {
+                window.location.href = "rdog.html"; // 그룹과 함께 특정 건강 목표를 다양한 방식으로 숙고하며 추구 (MBTI: ENTJ와 유사)
+            } else if (type === "RDOL") {
+                window.location.href = "rdol.html"; // 혼자서 특정 건강 목표를 다양한 방식으로 숙고하며 관리 (MBTI: INTJ와 유사)
             } else {
                 showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${type}</h1> <br> ${hmtiTypes[type]}`, true);
             }
         }
+        
+        function showModal(text, showShareButton) {
+            const modal = document.getElementById("myModal");
+            const span = document.getElementById("close");
+            const shareButton = document.getElementById("share-button");
+            const modalText = document.getElementById("modal-text");
+            modalText.innerHTML = text;
+            modal.style.display = "block";
+            shareButton.style.display = showShareButton ? "block" : "none";
+            span.onclick = () => modal.style.display = "none";
+            window.onclick = event => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+
+        function copyToClipboard() {
+            const type = calculateHMType();
+            const text = `${window.location.href}?hmtiType=${type}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('링크가 클립보드에 복사되었습니다!');
+            }).catch(error => {
+                alert('복사 실패: ', error);
+            });
+        }
 
         window.onload = () => {
             displayQuestions(); // 페이지 로드 시 질문 표시
+            const params = new URLSearchParams(window.location.search);
+            const hmtiType = params.get('hmtiType');
+            if (hmtiType) {
+                const resultText = `당신의 헬스케어 MBTI는? <br><br> <h1>${hmtiType}</h1> <br> ${hmtiTypes[hmtiType]}`;
+                const buttonText = `<button onclick="location.href='${window.location.origin}'">나도 검사하기</button>`;
+                showModal(resultText + buttonText, false);
+            }
         }
     </script>
 </body>
