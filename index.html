@@ -282,6 +282,19 @@
         type += answers[28] > answers[32] ? "A" : "R"; // 29번 질문
         type += answers[29] > answers[33] ? "C" : "D"; // 30번 질문
 
+        let finalType = "";
+        if (type[0] === "A") {
+            finalType += type[1] === "C" ? "ACHG" : "ADHG"; // A-C 또는 A-D
+        } else {
+            finalType += type[1] === "C" ? "RCHG" : "RDHG"; // R-C 또는 R-D
+        }
+
+        if (type[2] === "H") {
+            finalType += type[3] === "G" ? "ACOG" : "ACOL"; // H-G 또는 H-L
+        } else {
+            finalType += type[3] === "G" ? "RCOG" : "RCOL"; // O-G 또는 O-L
+        }
+
         showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${type}</h1> <br> ${hmtiTypes[type]}`, true);
     }
 
