@@ -312,34 +312,42 @@
 
             // 각 유형에 따라 페이지 이동
             if (type === "ACHG") {
-                window.location.href = "achg.html";
-            } else if (type === "ACDG") {
-                window.location.href = "acdg.html"; // ACDG 유형 페이지
-            } else if (type === "AHCG") {
-                window.location.href = "ahcg.html"; // AHCG 유형 페이지
-            } else if (type === "AHDG") {
-                window.location.href = "ahdg.html"; // AHDG 유형 페이지
-            } else if (type === "ARCG") {
-                window.location.href = "arcg.html"; // ARCG 유형 페이지
-            } else if (type === "ARDG") {
-                window.location.href = "ardg.html"; // ARDG 유형 페이지
-            } else if (type === "ACRH") {
-                window.location.href = "acrh.html"; // ACRH 유형 페이지
-            } else if (type === "ACDH") {
-                window.location.href = "acdh.html"; // ACDH 유형 페이지
-            } else if (type === "AHCH") {
-                window.location.href = "ahch.html"; // AHCH 유형 페이지
-            } else if (type === "AHDH") {
-                window.location.href = "ahdh.html"; // AHDH 유형 페이지
-            } else if (type === "ARCH") {
-                window.location.href = "arch.html"; // ARCH 유형 페이지
-            } else if (type === "ARDH") {
-                window.location.href = "ardh.html"; // ARDH 유형 페이지
+                window.location.href = "achg.html"; // 적극적이고 일관된 루틴으로 전체적 건강을 그룹과 함께 추구 (MBTI: ESTJ와 유사)
+            } else if (type === "ACHL") {
+                window.location.href = "achl.html"; // 혼자서 일관된 방식으로 전체적 건강을 적극적으로 관리 (MBTI: ISTJ와 유사)
+            } else if (type === "ACOG") {
+                window.location.href = "acog.html"; // 그룹과 함께 특정 건강 목표를 일관되고 적극적으로 추구 (MBTI: ESFJ와 유사)
+            } else if (type === "ACOL") {
+                window.location.href = "acol.html"; // 혼자서 특정 건강 목표를 일관되고 적극적으로 관리 (MBTI: ISFJ와 유사)
+            } else if (type === "ADHG") {
+                window.location.href = "adhg.html"; // 그룹과 함께 다양한 방식으로 전체적 건강을 적극적으로 추구 (MBTI: ENFJ와 유사)
+            } else if (type === "ADHL") {
+                window.location.href = "adhl.html"; // 혼자서 다양한 방식으로 전체적 건강을 적극적으로 관리 (MBTI: INFJ와 유사)
+            } else if (type === "ADOG") {
+                window.location.href = "adog.html"; // 그룹과 함께 특정 건강 목표를 다양한 방식으로 적극적으로 추구 (MBTI: ENTP와 유사)
+            } else if (type === "ADOL") {
+                window.location.href = "adol.html"; // 혼자서 특정 건강 목표를 다양한 방식으로 적극적으로 관리 (MBTI: INTP와 유사)
+            } else if (type === "RCHG") {
+                window.location.href = "rchg.html"; // 그룹 내에서 일관된 루틴으로 전체적 건강을 숙고적으로 관리 (MBTI: ESFP와 유사)
+            } else if (type === "RCHL") {
+                window.location.href = "rchl.html"; // 혼자서 일관된 루틴으로 전체적 건강을 숙고적으로 추구 (MBTI: ISFP와 유사)
+            } else if (type === "RCOG") {
+                window.location.href = "rcog.html"; // 그룹과 함께 특정 건강 목표를 일관되게 숙고하며 관리 (MBTI: ESTP와 유사)
+            } else if (type === "RCOL") {
+                window.location.href = "rcol.html"; // 혼자서 특정 건강 목표를 일관되게 숙고하며 관리 (MBTI: ISTP와 유사)
+            } else if (type === "RDHG") {
+                window.location.href = "rdhg.html"; // 그룹 내에서 다양한 방식으로 전체적 건강을 숙고적으로 추구 (MBTI: ENFP와 유사)
+            } else if (type === "RDHL") {
+                window.location.href = "rdhl.html"; // 혼자서 다양한 방식으로 전체적 건강을 숙고적으로 관리 (MBTI: INFP와 유사)
+            } else if (type === "RDOG") {
+                window.location.href = "rdog.html"; // 그룹과 함께 특정 건강 목표를 다양한 방식으로 숙고하며 추구 (MBTI: ENTJ와 유사)
+            } else if (type === "RDOL") {
+                window.location.href = "rdol.html"; // 혼자서 특정 건강 목표를 다양한 방식으로 숙고하며 관리 (MBTI: INTJ와 유사)
             } else {
                 showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${type}</h1> <br> ${hmtiTypes[type]}`, true);
             }
         }
-
+        
         function showModal(text, showShareButton) {
             const modal = document.getElementById("myModal");
             const span = document.getElementById("close");
