@@ -243,60 +243,60 @@
         };
 
         function calculateHMType() {
-        const answers = [];
-        for (let i = 1; i <= questions.length; i++) {
-            answers.push(parseInt(document.getElementById(`question${i}`).value));
+            const answers = [];
+            for (let i = 1; i <= questions.length; i++) {
+                answers.push(parseInt(document.getElementById(`question${i}`).value));
+            }
+
+            let type = "";
+
+            // A-R 차원
+            type += answers[0] > answers[4] ? "A" : "R"; // 1번 질문
+            type += answers[8] > answers[12] ? "A" : "R"; // 9번 질문
+
+            // C-D 차원
+            type += answers[1] > answers[5] ? "C" : "D"; // 2번 질문
+            type += answers[9] > answers[13] ? "C" : "D"; // 10번 질문
+
+            // H-O 차원
+            type += answers[2] > answers[6] ? "H" : "O"; // 3번 질문
+            type += answers[10] > answers[14] ? "H" : "O"; // 11번 질문
+
+            // G-L 차원
+            type += answers[3] > answers[7] ? "G" : "L"; // 4번 질문
+            type += answers[11] > answers[15] ? "G" : "L"; // 12번 질문
+
+            // 추가 질문들 (13~30번)
+            type += answers[16] > answers[20] ? "A" : "R"; // 17번 질문
+            type += answers[17] > answers[21] ? "C" : "D"; // 18번 질문
+            type += answers[18] > answers[22] ? "H" : "O"; // 19번 질문
+            type += answers[19] > answers[23] ? "G" : "L"; // 20번 질문
+            type += answers[20] > answers[24] ? "A" : "R"; // 21번 질문
+            type += answers[21] > answers[25] ? "C" : "D"; // 22번 질문
+            type += answers[22] > answers[26] ? "H" : "O"; // 23번 질문
+            type += answers[23] > answers[27] ? "G" : "L"; // 24번 질문
+            type += answers[24] > answers[28] ? "A" : "R"; // 25번 질문
+            type += answers[25] > answers[29] ? "C" : "D"; // 26번 질문
+            type += answers[26] > answers[30] ? "H" : "O"; // 27번 질문
+            type += answers[27] > answers[31] ? "G" : "L"; // 28번 질문
+            type += answers[28] > answers[32] ? "A" : "R"; // 29번 질문
+            type += answers[29] > answers[33] ? "C" : "D"; // 30번 질문
+
+            let finalType = "";
+            if (type[0] === "A") {
+                finalType += type[1] === "C" ? "ACHG" : "ADHG"; // A-C 또는 A-D
+            } else {
+                finalType += type[1] === "C" ? "RCHG" : "RDHG"; // R-C 또는 R-D
+            }
+
+            if (type[2] === "H") {
+                finalType += type[3] === "G" ? "ACOG" : "ACOL"; // H-G 또는 H-L
+            } else {
+                finalType += type[3] === "G" ? "RCOG" : "RCOL"; // O-G 또는 O-L
+            }
+
+            showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${finalType}</h1> <br> ${hmtiTypes[finalType]}`, true);
         }
-
-        let type = "";
-
-        // A-R 차원
-        type += answers[0] > answers[4] ? "A" : "R"; // 1번 질문
-        type += answers[8] > answers[12] ? "A" : "R"; // 9번 질문
-
-        // C-D 차원
-        type += answers[1] > answers[5] ? "C" : "D"; // 2번 질문
-        type += answers[9] > answers[13] ? "C" : "D"; // 10번 질문
-
-        // H-O 차원
-        type += answers[2] > answers[6] ? "H" : "O"; // 3번 질문
-        type += answers[10] > answers[14] ? "H" : "O"; // 11번 질문
-
-        // G-L 차원
-        type += answers[3] > answers[7] ? "G" : "L"; // 4번 질문
-        type += answers[11] > answers[15] ? "G" : "L"; // 12번 질문
-
-        // 추가 질문들 (13~30번)
-        type += answers[16] > answers[20] ? "A" : "R"; // 17번 질문
-        type += answers[17] > answers[21] ? "C" : "D"; // 18번 질문
-        type += answers[18] > answers[22] ? "H" : "O"; // 19번 질문
-        type += answers[19] > answers[23] ? "G" : "L"; // 20번 질문
-        type += answers[20] > answers[24] ? "A" : "R"; // 21번 질문
-        type += answers[21] > answers[25] ? "C" : "D"; // 22번 질문
-        type += answers[22] > answers[26] ? "H" : "O"; // 23번 질문
-        type += answers[23] > answers[27] ? "G" : "L"; // 24번 질문
-        type += answers[24] > answers[28] ? "A" : "R"; // 25번 질문
-        type += answers[25] > answers[29] ? "C" : "D"; // 26번 질문
-        type += answers[26] > answers[30] ? "H" : "O"; // 27번 질문
-        type += answers[27] > answers[31] ? "G" : "L"; // 28번 질문
-        type += answers[28] > answers[32] ? "A" : "R"; // 29번 질문
-        type += answers[29] > answers[33] ? "C" : "D"; // 30번 질문
-
-        let finalType = "";
-        if (type[0] === "A") {
-            finalType += type[1] === "C" ? "ACHG" : "ADHG"; // A-C 또는 A-D
-        } else {
-            finalType += type[1] === "C" ? "RCHG" : "RDHG"; // R-C 또는 R-D
-        }
-
-        if (type[2] === "H") {
-            finalType += type[3] === "G" ? "ACOG" : "ACOL"; // H-G 또는 H-L
-        } else {
-            finalType += type[3] === "G" ? "RCOG" : "RCOL"; // O-G 또는 O-L
-        }
-
-        showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${finalType}</h1> <br> ${hmtiTypes[finalType]}`, true);
-    }
 
         function showModal(text, showShareButton) {
             const modal = document.getElementById("myModal");
@@ -315,7 +315,7 @@
         }
 
         function copyToClipboard() {
-            const type = calculateHMType();
+            const type = calculateHMType(); // 최종 유형을 반환받음
             const text = `${window.location.href}?hmtiType=${type}`;
             navigator.clipboard.writeText(text).then(() => {
                 alert('링크가 클립보드에 복사되었습니다!');
