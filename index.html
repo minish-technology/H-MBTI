@@ -186,34 +186,37 @@
     </form>
   
     <!-- 커스텀 모달 -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span id="close">×</span>
-            <p id="modal-text"></p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <button id="share-button" style="display: none;" onclick="copyToClipboard()">공유하기</button>
-                <div style="display: flex; gap: 10px;"> <!-- 버튼 간격을 주기 위해 gap 사용 -->
-                    <button onclick="calculateHMType()">제출</button>
-                    <button id="view-achg" style="display: none;" onclick="location.href='achg.html'">ACHG 유형 보기</button> 
-                    <button id="view-achl" style="display: none;" onclick="location.href='achl.html'">ACHL 유형 보기</button> 
-                    <button id="view-acog" style="display: none;" onclick="location.href='acog.html'">ACOG 유형 보기</button> 
-                    <button id="view-acol" style="display: none;" onclick="location.href='acol.html'">ACOL 유형 보기</button> 
-                    <button id="view-adhg" style="display: none;" onclick="location.href='adhg.html'">ADHG 유형 보기</button> 
-                    <button id="view-adhl" style="display: none;" onclick="location.href='adhl.html'">ADHL 유형 보기</button> 
-                    <button id="view-adog" style="display: none;" onclick="location.href='adog.html'">ADOG 유형 보기</button> 
-                    <button id="view-adol" style="display: none;" onclick="location.href='adol.html'">ADOL 유형 보기</button> 
-                    <button id="view-rchg" style="display: none;" onclick="location.href='rchg.html'">RCHG 유형 보기</button> 
-                    <button id="view-rchl" style="display: none;" onclick="location.href='rchl.html'">RCHL 유형 보기</button> 
-                    <button id="view-rcog" style="display: none;" onclick="location.href='rcog.html'">RCOG 유형 보기</button> 
-                    <button id="view-rcol" style="display: none;" onclick="location.href='rcol.html'">RCOL 유형 보기</button> 
-                    <button id="view-rdhg" style="display: none;" onclick="location.href='rdhg.html'">RDHG 유형 보기</button> 
-                    <button id="view-rdhl" style="display: none;" onclick="location.href='rdhl.html'">RDHL 유형 보기</button> 
-                    <button id="view-rdog" style="display: none;" onclick="location.href='rdog.html'">RDOG 유형 보기</button> 
-                    <button id="view-rdol" style="display: none;" onclick="location.href='rdol.html'">RDOL 유형 보기</button> 
-                </div>
+<!-- 커스텀 모달 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span id="close">×</span>
+        <p id="modal-text"></p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button id="share-button" style="display: none;" onclick="copyToClipboard()">공유하기</button>
+            <div style="display: flex; gap: 10px;"> <!-- 버튼 간격을 주기 위해 gap 사용 -->
+                <button id="view-achg" style="display: none;" onclick="location.href='achg.html'">ACHG 유형 보기</button> 
+                <button id="view-achl" style="display: none;" onclick="location.href='achl.html'">ACHL 유형 보기</button> 
+                <button id="view-acog" style="display: none;" onclick="location.href='acog.html'">ACOG 유형 보기</button> 
+                <button id="view-acol" style="display: none;" onclick="location.href='acol.html'">ACOL 유형 보기</button> 
+                <button id="view-adhg" style="display: none;" onclick="location.href='adhg.html'">ADHG 유형 보기</button> 
+                <button id="view-adhl" style="display: none;" onclick="location.href='adhl.html'">ADHL 유형 보기</button> 
+                <button id="view-adog" style="display: none;" onclick="location.href='adog.html'">ADOG 유형 보기</button> 
+                <button id="view-adol" style="display: none;" onclick="location.href='adol.html'">ADOL 유형 보기</button> 
+                <button id="view-rchg" style="display: none;" onclick="location.href='rchg.html'">RCHG 유형 보기</button> 
+                <button id="view-rchl" style="display: none;" onclick="location.href='rchl.html'">RCHL 유형 보기</button> 
+                <button id="view-rcog" style="display: none;" onclick="location.href='rcog.html'">RCOG 유형 보기</button> 
+                <button id="view-rcol" style="display: none;" onclick="location.href='rcol.html'">RCOL 유형 보기</button> 
+                <button id="view-rdhg" style="display: none;" onclick="location.href='rdhg.html'">RDHG 유형 보기</button> 
+                <button id="view-rdhl" style="display: none;" onclick="location.href='rdhl.html'">RDHL 유형 보기</button> 
+                <button id="view-rdog" style="display: none;" onclick="location.href='rdog.html'">RDOG 유형 보기</button> 
+                <button id="view-rdol" style="display: none;" onclick="location.href='rdol.html'">RDOL 유형 보기</button> 
             </div>
         </div>
     </div>
+</div>
+
+<!-- 제출 버튼 -->
+<button onclick="calculateHMType()">제출</button>
     <script>
         const questions = [
             '나는 새로운 건강 정보를 접하면 빨리 경험해 보는 편이다.',
@@ -413,39 +416,17 @@
             showModal(`당신의 헬스케어 MBTI는? <br><br> <h1>${HMtitle}</h1> <br> ${description}`, true);
 
             // ACHG 유형일 때 버튼 표시
-            if (finalType === 'ACHG') {
-                document.getElementById('view-achg').style.display = 'block';
-            } else if (finalType === 'ACHL') {
-                document.getElementById('view-achl').style.display = 'block';
-            } else if (finalType === 'ACOG') {
-                document.getElementById('view-acog').style.display = 'block';
-            } else if (finalType === 'ACOL') {
-                document.getElementById('view-acol').style.display = 'block';
-            } else if (finalType === 'ADHG') {
-                document.getElementById('view-adhg').style.display = 'block';
-            } else if (finalType === 'ADHL') {
-                document.getElementById('view-adhl').style.display = 'block';
-            } else if (finalType === 'ADOG') {
-                document.getElementById('view-adog').style.display = 'block';
-            } else if (finalType === 'ADOL') {
-                document.getElementById('view-adol').style.display = 'block';
-            } else if (finalType === 'RCHG') {
-                document.getElementById('view-rchg').style.display = 'block';
-            } else if (finalType === 'RCHL') {
-                document.getElementById('view-rchl').style.display = 'block';
-            } else if (finalType === 'RCOG') {
-                document.getElementById('view-rcog').style.display = 'block';
-            } else if (finalType === 'RCOL') {
-                document.getElementById('view-rcol').style.display = 'block';
-            } else if (finalType === 'RDHG') {
-                document.getElementById('view-rdhg').style.display = 'block';
-            } else if (finalType === 'RDHL') {
-                document.getElementById('view-rdhl').style.display = 'block';
-            } else if (finalType === 'RDOG') {
-                document.getElementById('view-rdog').style.display = 'block';
-            } else if (finalType === 'RDOL') {
-                document.getElementById('view-rdol').style.display = 'block';
-            }
+            const types = [
+                'ACHG', 'ACHL', 'ACOG', 'ACOL', 'ADHG', 
+                'ADHL', 'ADOG', 'ADOL', 'RCHG', 'RCHL', 
+                'RCOG', 'RCOL', 'RDHG', 'RDHL', 'RDOG', 'RDOL'
+            ];
+
+            types.forEach(type => {
+                if (finalType === type) {
+                    document.getElementById(`view-${type.toLowerCase()}`).style.display = 'block';
+                }
+            });
         }
 
         function showModal(text, showShareButton) {
