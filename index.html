@@ -184,29 +184,34 @@
     <form id="hmti-test-form">
         <!-- 질문들이 여기에 동적으로 생성됩니다. -->
     </form>
-    <button onclick="calculateHMType()">제출</button>
-    <button id="view-achg" style="display: none;" onclick="location.href='achg.html'">ACHG 유형 보기</button> 
-    <button id="view-achl" style="display: none;" onclick="location.href='achl.html'">ACHL 유형 보기</button> 
-    <button id="view-acog" style="display: none;" onclick="location.href='acog.html'">ACOG 유형 보기</button> 
-    <button id="view-acol" style="display: none;" onclick="location.href='acol.html'">ACOL 유형 보기</button> 
-    <button id="view-adhg" style="display: none;" onclick="location.href='adhg.html'">ADHG 유형 보기</button> 
-    <button id="view-adhl" style="display: none;" onclick="location.href='adhl.html'">ADHL 유형 보기</button> 
-    <button id="view-adog" style="display: none;" onclick="location.href='adog.html'">ADOG 유형 보기</button> 
-    <button id="view-adol" style="display: none;" onclick="location.href='adol.html'">ADOL 유형 보기</button> 
-    <button id="view-rchg" style="display: none;" onclick="location.href='rchg.html'">RCHG 유형 보기</button> 
-    <button id="view-rchl" style="display: none;" onclick="location.href='rchl.html'">RCHL 유형 보기</button> 
-    <button id="view-rcog" style="display: none;" onclick="location.href='rcog.html'">RCOG 유형 보기</button> 
-    <button id="view-rcol" style="display: none;" onclick="location.href='rcol.html'">RCOL 유형 보기</button> 
-    <button id="view-rdhg" style="display: none;" onclick="location.href='rdhg.html'">RDHG 유형 보기</button> 
-    <button id="view-rdhl" style="display: none;" onclick="location.href='rdhl.html'">RDHL 유형 보기</button> 
-    <button id="view-rdog" style="display: none;" onclick="location.href='rdog.html'">RDOG 유형 보기</button> 
-    <button id="view-rdol" style="display: none;" onclick="location.href='rdol.html'">RDOL 유형 보기</button>     
+  
     <!-- 커스텀 모달 -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span id="close">×</span>
             <p id="modal-text"></p>
-            <button id="share-button" style="display: none;" onclick="copyToClipboard()">공유하기</button>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button id="share-button" style="display: none;" onclick="copyToClipboard()">공유하기</button>
+                <div style="display: flex; gap: 10px;"> <!-- 버튼 간격을 주기 위해 gap 사용 -->
+                    <button onclick="calculateHMType()">제출</button>
+                    <button id="view-achg" style="display: none;" onclick="location.href='achg.html'">ACHG 유형 보기</button> 
+                    <button id="view-achl" style="display: none;" onclick="location.href='achl.html'">ACHL 유형 보기</button> 
+                    <button id="view-acog" style="display: none;" onclick="location.href='acog.html'">ACOG 유형 보기</button> 
+                    <button id="view-acol" style="display: none;" onclick="location.href='acol.html'">ACOL 유형 보기</button> 
+                    <button id="view-adhg" style="display: none;" onclick="location.href='adhg.html'">ADHG 유형 보기</button> 
+                    <button id="view-adhl" style="display: none;" onclick="location.href='adhl.html'">ADHL 유형 보기</button> 
+                    <button id="view-adog" style="display: none;" onclick="location.href='adog.html'">ADOG 유형 보기</button> 
+                    <button id="view-adol" style="display: none;" onclick="location.href='adol.html'">ADOL 유형 보기</button> 
+                    <button id="view-rchg" style="display: none;" onclick="location.href='rchg.html'">RCHG 유형 보기</button> 
+                    <button id="view-rchl" style="display: none;" onclick="location.href='rchl.html'">RCHL 유형 보기</button> 
+                    <button id="view-rcog" style="display: none;" onclick="location.href='rcog.html'">RCOG 유형 보기</button> 
+                    <button id="view-rcol" style="display: none;" onclick="location.href='rcol.html'">RCOL 유형 보기</button> 
+                    <button id="view-rdhg" style="display: none;" onclick="location.href='rdhg.html'">RDHG 유형 보기</button> 
+                    <button id="view-rdhl" style="display: none;" onclick="location.href='rdhl.html'">RDHL 유형 보기</button> 
+                    <button id="view-rdog" style="display: none;" onclick="location.href='rdog.html'">RDOG 유형 보기</button> 
+                    <button id="view-rdol" style="display: none;" onclick="location.href='rdol.html'">RDOL 유형 보기</button> 
+                </div>
+            </div>
         </div>
     </div>
     <script>
