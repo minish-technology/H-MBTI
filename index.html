@@ -425,6 +425,8 @@
             types.forEach(type => {
                 if (finalType === type) {
                     document.getElementById(`view-${type.toLowerCase()}`).style.display = 'block';
+                } else {
+                    document.getElementById(`view-${type.toLowerCase()}`).style.display = 'none'; 
                 }
             });
         }
